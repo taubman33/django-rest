@@ -1,6 +1,5 @@
 ```bash
-$ pip install
-$ djangorestframework
+$ pip install djangorestframework
 $ pip freeze > requirements.txt
 ```
 
