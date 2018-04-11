@@ -68,21 +68,5 @@ urlpatterns = [
 ]
 ```
 
-views.py
-```py
-from rest_framework import generics, permissions
-
-
-class ArtistList(generics.ListCreateAPIView):
-    queryset = Artist.objects.all()
-    serializer_class = ArtistSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-
-
-class ArtistDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Artist.objects.all()
-    serializer_class = ArtistSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-```
 
 ![](product.png)
