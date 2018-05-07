@@ -1,4 +1,11 @@
 
+# Django REST Framework
+
+## Learning Objectives
+
+* Implement an API in Django
+* Install and use Django REST Framework
+
 ## Framing
 
 So far, we have written full-stack Django applications that use Django's builtin templating language to write our applications. When we are building applications in Django that use frontend frameworks or have live updating data, we have to use an API for our backend applications. Today, we are going to learn how to convert our Tunr application we have been working on to a JSON API using a package called Django REST Framework.
