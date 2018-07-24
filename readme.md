@@ -10,7 +10,9 @@
 
 So far, we have written full-stack Django applications that use Django's builtin templating language to write our applications. When we are building applications in Django that use frontend frameworks or have live updating data, we have to use an API for our backend applications. Today, we are going to learn how to convert our Tunr application we have been working on to a JSON API using a package called Django REST Framework.
 
-## Review: APIs
+This is similar to how we converted our MEHN stack to a MERN stack - instead of the API returning rendered HTML (using handlebars) we had it return pure JSON.
+
+## Review: APIs (5 min / 0:10)
 
 <details>
   <summary><strong>What is an API?</strong></summary>
@@ -20,9 +22,9 @@ So far, we have written full-stack Django applications that use Django's builtin
 </details>
 
 <details>
-  <summary><strong>How can we go about accessing an API within our programs?</strong></summary>
+  <summary><strong>What tools and libraries do we use to access other APIs from within our programs?</strong></summary>
 
-  > Using [jQuery's AJAX method](http://api.jquery.com/jquery.ajax/), [JavaScript's fetch method](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch), [Axios](https://github.com/axios/axios), or any other means of doing HTTP requests .
+  > Using [jQuery's AJAX method](http://api.jquery.com/jquery.ajax/), [JavaScript's fetch method](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch), [Axios](https://github.com/axios/axios), or any other means of doing HTTP requests, like [Postman](https://www.getpostman.com/)
 
 </details>
 
@@ -53,13 +55,14 @@ So far, we have written full-stack Django applications that use Django's builtin
 
 </details>
 
-## JSON Responses in Django
+## JSON Responses in Django (15 min / 0:25)
 
-Using Django's built-in `JsonResponse`, we can send dictionaries or lists as JSON objects in Django without installing any libraries. It will even generate an administrator interface for you to interact with your API in the browser - so no need to use Postman! It is also very customizable, so if you want to change 
+Using Django's built-in `JsonResponse`, we can send dictionaries or lists as JSON objects in Django without installing any libraries. It will even generate an administrator interface for you to interact with your API in the browser - so no need to use Postman! 
 
 For example:
 
 ```py
+# views.py
 from django.http import JsonResponse
 
 def artist_detail(request):
@@ -74,23 +77,26 @@ def artist_detail(request):
 We could also convert our QuerySet of data from our database to a list and then send that as a JsonResponse. Note: you could also use a serializer to convert it to a dictionary and send the data that way.
 
 ```py
+# views.py
+from django.http import JsonResponse
+
 def artist_list(request):
-    artists = Artist.objects.all().values('name', 'nationality', 'photo_url') # only grab some attributes from our database
+    artists = Artist.objects.all().values('name', 'nationality', 'photo_url') # only grab some attributes from our database, else we can't serialize it.
     artists_list = list(artists) # convert our artists to a list instead of QuerySet
     return JsonResponse(artists_list, safe=False) # safe=False is needed if the first parameter is not a dictionary.
 
 ```
-This method of sending JSON responses is very similar to what we did in Express; however, there is a simpler way of doing this using Django REST Framework.
+This method of sending JSON responses is very similar to what we did in Express; however, there is a more expressive way of doing this using Django REST Framework.
 
 ## Django REST Framework
 
-Using Django's built-in `JsonResponse`, we can send dictionaries or lists as JSON objects in Django without installing any libraries. It will even generate an administrator interface for you to interact with your API in the browser - so no need to use Postman! It is also very customizable, so if you want to change how your API renders, you can probably do it! 
+Django REST framework is a package that works nicely with django's base functionality. It has a lot of advantages over just sending a JSON response, not to mention a nice interface. It will even generate an administrator interface for you to interact with your API in the browser - so no need to use Postman! It is also very customizable, so if you want to change how your API renders, you can probably do it! 
 
 It is also very widely used -- it is used by Mozilla, Red Hat, Heroku, and Eventbrite.
 
-## Installation and Configuration
+## Installation and Configuration (15 min / 0:40)
 
-Change into your `tunr` directory and make sure you have the latest code from the views and templates lesson. If not, checkout the solution branch from that lesson which is called `views-solution`.
+Change into your `tunr` directory and make sure you have the latest code from the views and templates lesson. If not, checkout the solution branch from that lesson which is called `views-solution`. Make sure your virtualenv is activated, and also make sure your user permissions are set up properly.
 
 Now, install the `djangorestframework` and save it to your `requirements.txt` file so future developers know to install it as well.
 
@@ -124,19 +130,25 @@ REST_FRAMEWORK = {
 
 We also have to include some URLs for authentication for Django REST framework. These URLs will be used for sign-in and sign-out pages. The framework will handle linking to these pages, we just need to include the URLs that have already been set up.
 
-In the `urls` list in `django/urls.py`, add the following:
+In the `urls` list in `tunr_django/urls.py`, add the following to your `urlpatterns` list:
 
 ```python
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+path('api-auth', include('rest_framework.urls', namespace='rest_framework'))
 ```
 
-## Serializers
+<!-- Make sure you have `url` imported at the top as well:
+
+```python
+# from django.conf.urls import include, url
+``` -->
+
+## Serializers (20 min / 1:00)
 
 Serializers allow us to convert our data from QuerySets to data that can easily be converted to JSON (or XML) and rendered to our API. There are several types of serializers built into Django REST framework; however, we will be using the `HyperlinkedModelSerializer` today. This serializer allows us to specify model fields that we want to include in our API and it will generate our JSONs accordingly. It will also allow us to link from one model to another.
 
 In this case, we want all of the fields from the Artist model in our serializer, so we will include all of them in our `fields` tuple.
 
-We will create a new file, called `serializers.py` to hold our serializer class.
+We will create a new file in the root of our `tunr` app folder, called `serializers.py` to hold our serializer class.
 
 ```py
 from rest_framework import serializers
@@ -156,20 +168,27 @@ class ArtistSerializer(serializers.HyperlinkedModelSerializer):
 
 The  `Meta` class within our `Artist` serializer class specifies meta data about our serializer. In this class, the model it serializes and the fields we want to serialize. Also, we are creating a HyperlinkedRelatedField. This allows us to link one model to another using a hyperlink. The `view-name` specifies the name of the view given in the `urls.py` file.
 
-### You Do: Create a Serializer for Songs
+### You Do: Create a Serializer for Songs (10 min / 1:10)
+
+> 5 min exercise, 5 min review
 
 In the serializers file, add a second serializer for the Song class. Again, include all of the fields from the model in your API.
 
 > Bonus: Try out a different [serializer](http://www.django-rest-framework.org/api-guide/serializers) to relate your models!
 
 > [Solution](https://git.generalassemb.ly/dc-wdi-python-django/tunr/blob/django-rest-framework/tunr/serializers.py)
-## Views
+
+## Break (10 min / 1:20)
+
+## Views (20 min / 1:40)
 
 Django REST framework has a bunch of utility functions and classes for implementing sets of views in Django. Instead of creating each view individually, Django REST framework will create multiple views for us in a few lines of code.
 
 For example, we can use the `ListCreateAPIView` to create both our list view for our API and our create view. We can also use `RetrieveUpdateDestroyAPIView` to create show, update, and delete routes for our API.
 
 ```py
+# views.py
+
 from rest_framework import generics 
 from .serializers import ArtistSerializer
 
@@ -183,18 +202,22 @@ class ArtistDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ArtistSerializer
 ```
 
-### You Do: Add Views for the Songs
+> Note: You can get rid of all the prior code in `views.py` since we're not going to be rendering any templates.
+
+### You Do: Add Views for the Songs (10 min / 1:50)
 
 Add in the views for the songs. 
 
 > [Solution](https://git.generalassemb.ly/dc-wdi-python-django/tunr/blob/django-rest-framework/tunr/views.py)
 
 
-## URLs
+## URLs (20 min / 2:10)
 
 Since Django can handle multiple request types in one view and using one url, we just need to set up two routes: one for the single view and one for the list view.
 
 ```py
+# tunr/urls.py
+
 from django.conf.urls import url
 
 from rest_framework.routers import DefaultRouter
@@ -202,15 +225,29 @@ from rest_framework.routers import DefaultRouter
 from . import views
 
 urlpatterns = [
-  url(r'artists/$', views.ArtistList.as_view()),
-  url(r'artists/(?P<pk>[0-9]+)/$', views.ArtistDetail.as_view())
+    url(r'artists/$', views.ArtistList.as_view(), name='artists-list'),
+    url(r'artists/(?P<pk>[0-9]+)/$', views.ArtistDetail.as_view(), name='artist-detail'),
 ]
 ```
 
-### You Do: Add URLs for the Song Views
+> Note: We're using `regular expressions` here which is something new. We previously used params with the `<type:param_name>` syntax.
+
+> Here's a fun tool to play around with regular expressions: https://regex101.com/. Select 'python' from the list on the left.
+
+### You Do: Add URLs for the Song Views (10 min / 2:20)
 
 Add in the urls for the song views. 
 
 > [Solution](https://git.generalassemb.ly/dc-wdi-python-django/tunr/blob/django-rest-framework/tunr/views.py)
 
+## Testing! (10 min / 2:30)
+
+Now let's hit the urls we just built out and see what happens.
+
+* `http://localhost:8000/api-auth/artists/`
+* `http://localhost:8000/api-auth/artists/1/`
+* `http://localhost:8000/api-auth/songs/`
+* `http://localhost:8000/api-auth/songs/1/`
+
 ![](product.png)
+
