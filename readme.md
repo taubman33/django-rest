@@ -197,7 +197,7 @@ In the `urls` list in `tunr_django/urls.py`, add the following to your
 `urlpatterns` list:
 
 ```python
-path('api-auth', include('rest_framework.urls', namespace='rest_framework'))
+path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ```
 
 ## Serializers (20 min / 1:00)
