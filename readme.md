@@ -100,7 +100,7 @@ For example:
 # views.py
 from django.http import JsonResponse
 
-def artist_detail(request):
+def artist_list(request):
     data = {
         'name': 'Kanye',
         'photo_url': 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Kanye_West_at_the_2009_Tribeca_Film_Festival.jpg/1920px-Kanye_West_at_the_2009_Tribeca_Film_Festival.jpg',
