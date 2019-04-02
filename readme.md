@@ -313,6 +313,7 @@ they point to views that now no longer exist.
 
 from rest_framework import generics
 from .serializers import ArtistSerializer
+from .models import Artist
 
 class ArtistList(generics.ListCreateAPIView):
     queryset = Artist.objects.all()
