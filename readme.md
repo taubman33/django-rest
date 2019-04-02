@@ -83,8 +83,8 @@ fetch("/artists", {
 })
   .then(response => response.json())
   .then(response => {
-    console.log(response)
-  })
+    console.log(response);
+  });
 ```
 
 </details>
@@ -92,9 +92,7 @@ fetch("/artists", {
 ## JSON Responses in Django (15 min / 0:25)
 
 Using Django's built-in `JsonResponse`, we can send dictionaries or lists as
-JSON objects in Django without installing any libraries. It will even generate
-an administrator interface for you to interact with your API in the browser - so
-no need to use Postman!
+JSON objects in Django without installing any libraries.
 
 For example:
 
