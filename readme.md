@@ -151,12 +151,10 @@ that lesson which is called `views-solution`. Make sure your virtualenv is
 activated, and also make sure your database user permissions are set up
 properly.
 
-Now, install the `djangorestframework` and save it to your `requirements.txt`
-file so future developers know to install it as well.
+Before we get started, install the `djangorestframework` dependency.
 
 ```bash
-$ pip install djangorestframework
-$ pip freeze > requirements.txt
+$ pipenv install djangorestframework
 ```
 
 Also, add it to your `INSTALLED_APPS` list in your `settings.py` so that you can
@@ -411,5 +409,5 @@ user.
 ## [License](LICENSE)
 
 1. All content is licensed under a CC­BY­NC­SA 4.0 license.
-1. All software code is licensed under GNU GPLv3. For commercial use or
+2. All software code is licensed under GNU GPLv3. For commercial use or
    alternative licensing, please contact legal@ga.co.
