@@ -339,14 +339,12 @@ view.
 ```py
 # tunr/urls.py
 from django.conf.urls import url
-
+from . import views
 from rest_framework.routers import DefaultRouter
 
-from . import views
-
 urlpatterns = [
-    url('artists', views.ArtistList.as_view(), name='artists-list'),
-    url('artists/<int:pk>', views.ArtistDetail.as_view(), name='artist-detail'),
+    path('artists/', views.ArtistList.as_view(), name='artist_list'),
+    path('artists/<int:pk>', views.ArtistDetail.as_view(), name='artist_detail'),
 ]
 ```
 
@@ -360,10 +358,10 @@ Add in the urls for the song views.
 
 Now let's hit the urls we just built out and see what happens.
 
-- `http://localhost:8000/api-auth/artists/`
-- `http://localhost:8000/api-auth/artists/1/`
-- `http://localhost:8000/api-auth/songs/`
-- `http://localhost:8000/api-auth/songs/1/`
+- `http://localhost:8000/artists/`
+- `http://localhost:8000/artists/1/`
+- `http://localhost:8000/songs/`
+- `http://localhost:8000/songs/1/`
 
 ![](product.png)
 
