@@ -377,6 +377,20 @@ Maybe we should try logging in first.....
 
 Once we're logged in we should see a form that allows us to create data! woo!
 
+## Cors
+
+We need to configure CORS in order for other applications to use the API we just
+created.
+
+This is outside of the scope of today's lesson, but it's super simple!
+
+The
+[Django Rest Documentation page on AJAX](https://www.django-rest-framework.org/topics/ajax-csrf-cors/)
+is a great place to get started. It endorses the
+[Django Cors Headers](https://github.com/ottoyiu/django-cors-headers/)
+middleware, which can be installed like any other dependency with `pipenv` and
+is configured in the Project's `settings.py`
+
 ## More!
 
 There's a lot more we can do with DRF, like:
