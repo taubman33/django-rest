@@ -338,7 +338,7 @@ view.
 
 ```py
 # tunr/urls.py
-from django.conf.urls import url
+from django.urls import path
 from . import views
 from rest_framework.routers import DefaultRouter
 
