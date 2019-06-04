@@ -83,8 +83,8 @@ fetch("/artists", {
 })
   .then(response => response.json())
   .then(response => {
-    console.log(response);
-  });
+    console.log(response)
+  })
 ```
 
 </details>
@@ -143,11 +143,12 @@ front end!
 
 ## Installation and Configuration (15 min / 0:40)
 
-Change into your `tunr` project directory and make sure you have the latest code
-from the views and templates lesson. If not, checkout the solution branch from
-that lesson which is called `views-solution`. Make sure your virtualenv is
-activated, and also make sure your database user permissions are set up
-properly.
+Change into your
+[`tunr`](https://git.generalassemb.ly/dc-wdi-python-django/tunr/tree/views-solution)
+project directory and make sure you have the latest code from the views and
+templates lesson. If not, checkout the solution branch from that lesson which is
+called `views-solution`. Make sure your virtualenv is activated, and also make
+sure your database user permissions are set up properly.
 
 Before we get started, install the `djangorestframework` dependency.
 
@@ -161,14 +162,15 @@ use it within your project.
 ```python
 INSTALLED_APPS = [
     # ...
+    'tunr',
     'rest_framework',
 ]
 ```
 
-Further down in your `settings.py` file, configure Django REST Framework to
-require authentication to create, update, or delete items using your API.
-Unauthorized users will still be able to perform read actions on your data. This
-is all the configuration that you need to set up these permissions!
+We also need to configure Django REST Framework to require authentication to
+create, update, or delete items using your API. Unauthorized users will still be
+able to perform read actions on your data. This is all the configuration that
+you need to set up these permissions!
 
 Add this variable as a new dictionary, anywhere in `settings.py`:
 
@@ -278,7 +280,7 @@ include all of the fields from the model in your API.
 > [serializer](http://www.django-rest-framework.org/api-guide/serializers) to
 > relate your models!
 
-> [Solution](https://git.generalassemb.ly/dc-wdi-python-django/tunr/blob/django-rest-framework/tunr/serializers.py)
+> [Solution](https://git.generalassemb.ly/dc-wdi-python-django/tunr/blob/django-rest-framework-solution/tunr/serializers.py)
 
 ## Break (10 min / 1:20)
 
@@ -305,7 +307,7 @@ on the ArtistList view. For ArtistDetail, we'll allow Retrieve, Update, Delete
 (RUD in CRUD) permissions.
 
 We can get rid of all the prior code in `tunr/views.py` since we're not going to
-be rendering any templates. We'll also have to get rid of all the urls because
+be rendering any templates. We'll also have to get rid of all the urls in `tunr/urls.py` because
 they point to views that now no longer exist.
 
 ```py
@@ -328,9 +330,11 @@ class ArtistDetail(generics.RetrieveUpdateDestroyAPIView):
 
 Add in the views for the songs.
 
-> [Solution](https://git.generalassemb.ly/dc-wdi-python-django/tunr/blob/django-rest-framework/tunr/views.py)
+> [Solution](https://git.generalassemb.ly/dc-wdi-python-django/tunr/blob/django-rest-framework-solution/tunr/views.py)
 
 ## URLs (20 min / 2:10)
+
+DRF comes with some pre-configured conventions for URLs, in what they call a `router`. These URLs map to views that follow a naming convention.
 
 Since Django can handle multiple request types in one view and using one url, we
 just need to set up two routes: one for the single view and one for the list
@@ -352,7 +356,7 @@ urlpatterns = [
 
 Add in the urls for the song views.
 
-> [Solution](https://git.generalassemb.ly/dc-wdi-python-django/tunr/blob/django-rest-framework/tunr/urls.py)
+> [Solution](https://git.generalassemb.ly/dc-wdi-python-django/tunr/blob/django-rest-framework-solution/tunr/urls.py)
 
 ## Testing! (10 min / 2:30)
 
@@ -375,7 +379,7 @@ Maybe we should try logging in first.....
 > If you can't login, try running `python3 manage.py createsuperuser` and follow
 > the prompts. Then, login with that user and password.
 
-Once we're logged in we should see a form that allows us to create data! woo!
+Once we're logged in we should see a form on `/artists` or `/songs` that allows us to create data! woo!
 
 ## Cors
 
