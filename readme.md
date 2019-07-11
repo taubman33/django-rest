@@ -219,8 +219,14 @@ one model to another.
 In this case, we want all of the fields from the Artist model in our serializer,
 so we will include all of them in our `fields` tuple.
 
-We will create a new file in the root of our `tunr` app folder, called
+We will create a new file in our `tunr` app folder, called
 `serializers.py` to hold our serializer class.
+
+```bash
+$ touch tunr/serializers.py
+```
+
+Import the base serializer class and model.
 
 ```py
 from rest_framework import serializers
