@@ -30,13 +30,13 @@ use an API for our back end applications. Today, we are going to learn how to
 convert our Tunr application we have been working on to a JSON API using a
 package called Django REST Framework.
 
-This is similar to how we converted our MEHN stack app to the MERN stack:
-instead of the API returning rendered HTML (using handlebars), we had it return
-JSON.
+If we wanted to build an application that used Django on the backend and React
+on the front end (like Instagram, Rover, and a number of other big
+applications), this is the process we'd follow.
 
-The main difference is that Django REST framework has some powerful tools and
-conventions for controlling how we get to receive and send JSON data. With the
-MERN stack, we had to do all that manually.
+We'll see that the Django REST framework has some powerful tools and conventions
+for controlling how we get and send JSON data. With the MERN stack, we had to do
+all that manually!
 
 ## Review: APIs (5 min / 0:10)
 
@@ -94,7 +94,7 @@ fetch("/artists", {
 Using Django's built-in `JsonResponse`, we can send dictionaries or lists as
 JSON objects in Django without installing any libraries.
 
-For example:
+Here is what that looks like:
 
 ```py
 # views.py
@@ -123,8 +123,8 @@ def artist_list(request):
     return JsonResponse(artists_list, safe=False) # safe=False is needed if the first parameter is not a dictionary.
 ```
 
-This method of sending JSON responses is very similar to what we did in Express;
-however, there is a more expressive way of doing this using Django REST
+This method of sending JSON responses is very similar to what we did in Express.
+However, there is a more expressive way of doing this using Django REST
 Framework.
 
 ## Django REST Framework
@@ -132,13 +132,13 @@ Framework.
 Django REST framework is a package that works nicely with Django's base
 functionality. It has a lot of advantages over just sending a JSON response, not
 to mention a nice interface. It will even generate an administrator interface
-for you to interact with your API in the browser - so no need to use Postman! It
-is also very customizable, so if you want to change how your API renders, you
-can probably do it!
+for you to interact with your API in the browser - so you don't need to use
+Postman! It is also very customizable, so if you want to change how your API
+renders, you can probably do it!
 
 It is also very widely used - it is used by Mozilla, Red Hat, Heroku,
 Eventbrite, Instagram, Pinterest, and BitBucket. An increasingly popular stack
-among startups is: Django Rest Framework for the back end and React for the
+among startups is Django Rest Framework for the back end and React for the
 front end!
 
 ## Installation and Configuration (15 min / 0:40)
@@ -147,8 +147,8 @@ Change into your
 [`tunr`](https://git.generalassemb.ly/dc-wdi-python-django/tunr/tree/views-solution)
 project directory and make sure you have the latest code from the views and
 templates lesson. If not, checkout the solution branch from that lesson which is
-called `views-solution`. Make sure your virtualenv is activated, and also make
-sure your database user permissions are set up properly.
+called `views-solution`. Make sure your virtual environment is activated, and
+also make sure your database user permissions are set up properly.
 
 Before we get started, install the `djangorestframework` dependency.
 
@@ -206,7 +206,7 @@ path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 
 [ Serializers ](https://www.django-rest-framework.org/api-guide/serializers/)
 allow us to convert our data from QuerySets (the data type returned by Django's
-ORM) to data that can easily be converted to JSON (or XML) and rendered to our
+ORM) to data that can easily be converted to JSON (or XML) and returned by our
 API. There are several types of serializers built into Django REST framework;
 however, we will be using the `HyperlinkedModelSerializer` today. This
 serializer allows us to specify model fields that we want to include in our API
@@ -340,7 +340,8 @@ Add in the views for the songs.
 
 ## URLs (20 min / 2:10)
 
-DRF comes with some pre-configured conventions for URLs, in what they call a `router`. These URLs map to views that follow a naming convention.
+DRF comes with some pre-configured conventions for URLs, in what they call
+a `router`. These URLs map to views that follow a naming convention.
 
 Since Django can handle multiple request types in one view and using one url, we
 just need to set up two routes: one for the single view and one for the list
@@ -375,7 +376,7 @@ Now let's hit the urls we just built out and see what happens.
 
 ![](product.png)
 
-Awesome right!
+Awesome, right!
 
 Now wait a minute, we should also be able to create data. How come we can't do
 that?
@@ -422,6 +423,12 @@ records.
 allows us to customize our queries. For example maybe we want to limit the
 records and only show ones that are associated with the currently logged-in
 user.
+
+## Lab: [Django Book API](https://git.generalassemb.ly/dc-wdi-python-django/django-api-lab)
+
+Fork and clone the [Django Book
+API](https://git.generalassemb.ly/dc-wdi-python-django/django-api-lab) lab.
+Spend the rest of class working on the lab.
 
 ## Additional Resources
 
