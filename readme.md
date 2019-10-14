@@ -270,7 +270,7 @@ class ArtistSerializer(serializers.HyperlinkedModelSerializer):
     )
 +   class Meta:
 +       model = Artist
-+       fields = ('id', 'photo_url', 'nationality', 'name', 'songs')
++       fields = ('id', 'photo_url', 'nationality', 'name', 'songs',)
 ```
 
 Lets break down what's going on here.
@@ -370,7 +370,7 @@ from . import views
 from rest_framework.routers import DefaultRouter
 
 urlpatterns = [
-    path('artists/', views.ArtistList.as_view(), name='artist_list'),
+    path('artists', views.ArtistList.as_view(), name='artist_list'),
     path('artists/<int:pk>', views.ArtistDetail.as_view(), name='artist_detail'),
 ]
 ```
@@ -404,6 +404,32 @@ Maybe we should try logging in first.....
 
 Once we're logged in we should see a form on `/artists` or `/songs` that allows
 us to create data! woo!
+
+## Adding Fields with URLs to Detail Views
+
+Wouldn't it be cool if each Artist and Song in the List view contained a link to
+their details?
+
+We can add this by updating the serializers with
+[custom field mappings](https://www.django-rest-framework.org/api-guide/serializers/#customizing-field-mappings):
+
+```diff
+class ArtistSerializer(serializers.HyperlinkedModelSerializer):
+    songs = serializers.HyperlinkedRelatedField(
+        view_name='song_detail',
+        many=True,
+        read_only=True,
+    )
+
++    artist_url = serializers.ModelSerializer.serializer_url_field(
++        view_name='artist_detail'
++    )
+
+    class Meta:
+        model = Artist
+-        fields = ('id', 'photo_url', 'nationality', 'name', 'songs',)
++        fields = ('id', 'artist_url', 'photo_url', 'nationality', 'name', 'songs',)
+```
 
 ## Cors
 
