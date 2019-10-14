@@ -203,8 +203,20 @@ In the `urls` list in `tunr_django/urls.py`, add the following to your
 `urlpatterns` list:
 
 ```python
-path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+path('api-auth', include('rest_framework.urls', namespace='rest_framework'))
 ```
+
+In our Templates, we can refer to each app path by it's `name`:
+
+```py
+path('', views.artist_list, name='artist_list'),
+```
+
+The `namespace` in the project `urls.py` allows us to refer to paths more
+specifically, so we can say something like `rest_framework:path_name`.
+
+[Here are the docs](https://docs.djangoproject.com/en/2.2/topics/http/urls/#url-namespaces)
+for more information about the `namespace` argument.
 
 ## Serializers (20 min / 1:00)
 
