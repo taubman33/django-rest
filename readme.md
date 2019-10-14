@@ -83,8 +83,8 @@ fetch("/artists", {
 })
   .then(response => response.json())
   .then(response => {
-    console.log(response)
-  })
+    console.log(response);
+  });
 ```
 
 </details>
@@ -138,8 +138,8 @@ renders, you can probably do it!
 
 It is also very widely used - it is used by Mozilla, Red Hat, Heroku,
 Eventbrite, Instagram, Pinterest, and BitBucket. An increasingly popular stack
-among startups is Django Rest Framework for the back end and React for the
-front end!
+among startups is Django Rest Framework for the back end and React for the front
+end!
 
 ## Installation and Configuration (15 min / 0:40)
 
@@ -219,8 +219,8 @@ one model to another.
 In this case, we want all of the fields from the Artist model in our serializer,
 so we will include all of them in our `fields` tuple.
 
-We will create a new file in our `tunr` app folder, called
-`serializers.py` to hold our serializer class.
+We will create a new file in our `tunr` app folder, called `serializers.py` to
+hold our serializer class.
 
 ```bash
 $ touch tunr/serializers.py
@@ -313,8 +313,8 @@ on the ArtistList view. For ArtistDetail, we'll allow Retrieve, Update, Delete
 (RUD in CRUD) permissions.
 
 We can get rid of all the prior code in `tunr/views.py` since we're not going to
-be rendering any templates. We'll also have to get rid of all the urls in `tunr/urls.py` because
-they point to views that now no longer exist.
+be rendering any templates. We'll also have to get rid of all the urls in
+`tunr/urls.py` because they point to views that now no longer exist.
 
 ```py
 # views.py
@@ -340,8 +340,8 @@ Add in the views for the songs.
 
 ## URLs (20 min / 2:10)
 
-DRF comes with some pre-configured conventions for URLs, in what they call
-a `router`. These URLs map to views that follow a naming convention.
+DRF comes with some pre-configured conventions for URLs, in what they call a
+`router`. These URLs map to views that follow a naming convention.
 
 Since Django can handle multiple request types in one view and using one url, we
 just need to set up two routes: one for the single view and one for the list
@@ -386,7 +386,8 @@ Maybe we should try logging in first.....
 > If you can't login, try running `python3 manage.py createsuperuser` and follow
 > the prompts. Then, login with that user and password.
 
-Once we're logged in we should see a form on `/artists` or `/songs` that allows us to create data! woo!
+Once we're logged in we should see a form on `/artists` or `/songs` that allows
+us to create data! woo!
 
 ## Cors
 
@@ -426,9 +427,9 @@ user.
 
 ## Lab: [Django Book API](https://git.generalassemb.ly/dc-wdi-python-django/django-api-lab)
 
-Fork and clone the [Django Book
-API](https://git.generalassemb.ly/dc-wdi-python-django/django-api-lab) lab.
-Spend the rest of class working on the lab.
+Fork and clone the
+[Django Book API](https://git.generalassemb.ly/dc-wdi-python-django/django-api-lab)
+lab. Spend the rest of class working on the lab.
 
 ## Additional Resources
 
