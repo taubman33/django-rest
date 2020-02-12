@@ -467,10 +467,10 @@ allows us to customize our queries. For example maybe we want to limit the
 records and only show ones that are associated with the currently logged-in
 user.
 
-## Lab: [Django Book API](https://git.generalassemb.ly/dc-wdi-python-django/django-api-lab)
+## Lab: [Django Book API](https://git.generalassemb.ly/seir-129/django-api-lab)
 
 Fork and clone the
-[Django Book API](https://git.generalassemb.ly/dc-wdi-python-django/django-api-lab)
+[Django Book API](https://git.generalassemb.ly/seir-129/django-api-lab)
 lab. Spend the rest of class working on the lab.
 
 ## Additional Resources
