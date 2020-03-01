@@ -188,10 +188,10 @@ REST_FRAMEWORK = {
 }
 ```
 
-> If you would like to use JWT in your Django REST framework app,
-> [Django REST framework JWT](http://getblimp.github.io/django-rest-framework-jwt/)
-> is awesome and has in-depth documentation on getting it setup. If you are
-> using a front-end framework for your Django application, this is probably the
+> If you would like to use JWT in your Django REST framework app, the [documentation
+> recommends](https://www.django-rest-framework.org/api-guide/authentication/#json-web-token-authentication)
+> the [Simple JWT] package as a good place to start.  If you are using a 
+> separate front-end framework for your Django application, this is probably the
 > way to go!
 
 We also have to include some URLs for authentication for Django REST framework.
