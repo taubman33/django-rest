@@ -190,7 +190,7 @@ REST_FRAMEWORK = {
 
 > If you would like to use JWT in your Django REST framework app, the [documentation
 > recommends](https://www.django-rest-framework.org/api-guide/authentication/#json-web-token-authentication)
-> the [Simple JWT] package as a good place to start.  If you are using a 
+> the [Simple JWT](https://github.com/davesque/django-rest-framework-simplejwt) package as a good place to start.  If you are using a 
 > separate front-end framework for your Django application, this is probably the
 > way to go!
 
