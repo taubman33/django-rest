@@ -302,7 +302,7 @@ include all of the fields from the model in your API.
 > [serializer](http://www.django-rest-framework.org/api-guide/serializers) to
 > relate your models!
 
-> [Solution](https://git.generalassemb.ly/dc-wdi-python-django/tunr/blob/django-rest-framework-solution/tunr/serializers.py)
+> [Solution](https://git.generalassemb.ly/seir-129/tunr-1/blob/django-rest-framework-solution/tunr/serializers.py)
 
 ## Break (10 min / 1:20)
 
@@ -352,7 +352,7 @@ class ArtistDetail(generics.RetrieveUpdateDestroyAPIView):
 
 Add in the views for the songs.
 
-> [Solution](https://git.generalassemb.ly/dc-wdi-python-django/tunr/blob/django-rest-framework-solution/tunr/views.py)
+> [Solution](https://git.generalassemb.ly/seir-129/tunr-1/blob/django-rest-framework-solution/tunr/views.py)
 
 ## URLs (20 min / 2:10)
 
@@ -379,7 +379,7 @@ urlpatterns = [
 
 Add in the urls for the song views.
 
-> [Solution](https://git.generalassemb.ly/dc-wdi-python-django/tunr/blob/django-rest-framework-solution/tunr/urls.py)
+> [Solution](https://git.generalassemb.ly/seir-129/tunr-1/blob/django-rest-framework-solution/tunr/urls.py)
 
 ## Testing! (10 min / 2:30)
 
