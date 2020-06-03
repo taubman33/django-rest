@@ -95,7 +95,7 @@ Using Django's built-in `JsonResponse`, we can send dictionaries or lists as
 JSON objects in Django without installing any libraries.
 
 Let's open
-[`tunr`](https://github.com/ga-wdi-exercises/tunr_updated/tree/views-solution)
+[`tunr`](../../turn-django-demo)
 and checkout a new branch to test it out!
 
 Here is what that looks like:
