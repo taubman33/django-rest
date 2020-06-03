@@ -433,7 +433,7 @@ class ArtistSerializer(serializers.HyperlinkedModelSerializer):
 
 But wait, how do we add a new song that is related to the artist?  Let's update the `SongSerializer` too:
 
-```
+```diff
 class SongSerializer(serializers.HyperlinkedModelSerializer):
     artist = serializers.HyperlinkedRelatedField(
         view_name='artist_detail',
