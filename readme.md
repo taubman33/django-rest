@@ -431,6 +431,27 @@ class ArtistSerializer(serializers.HyperlinkedModelSerializer):
 +        fields = ('id', 'artist_url', 'photo_url', 'nationality', 'name', 'songs',)
 ```
 
+But wait, how do we add a new song that is related to the artist?  Let's update the `SongSerializer` too:
+
+```
+class SongSerializer(serializers.HyperlinkedModelSerializer):
+    artist = serializers.HyperlinkedRelatedField(
+        view_name='artist_detail',
+        read_only=True
+    ) 
+
++    artist_id = serializers.PrimaryKeyRelatedField(
++        queryset=Artist.objects.all(),
++        source='artist'
++    )
+
+    class Meta:
+        model = Song      
+-        fields = ('id', 'artist', 'title', 'album', 'preview_url',)
++        fields = ('id', 'artist', 'artist_id', 'title', 'album', 'preview_url')
+        
+```
+
 ## Cors
 
 We need to configure CORS in order for other applications to use the API we just
