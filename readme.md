@@ -157,7 +157,7 @@ also make sure your database user permissions are set up properly.
 Before we get started, install the `djangorestframework` dependency.
 
 ```bash
-$ pip install djangorestframework
+$ pipenv install djangorestframework
 ```
 
 Also, add it to your `INSTALLED_APPS` list in your `settings.py` so that you can
