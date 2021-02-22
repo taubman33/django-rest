@@ -354,7 +354,7 @@ class ArtistDetail(generics.RetrieveUpdateDestroyAPIView):
 
 Add in the views for the songs.
 
-> [Solution](https://git.generalassemb.ly/sei-921/tunr-1/blob/django-rest-framework-solution/tunr/views.py)
+> [Solution](https://git.generalassemb.ly/seir-1130/tunr-1/blob/django-rest-framework-solution/tunr/views.py)
 
 ## URLs (20 min / 2:10)
 
@@ -381,7 +381,7 @@ urlpatterns = [
 
 Add in the urls for the song views.
 
-> [Solution](https://git.generalassemb.ly/sei-921/tunr-1/blob/django-rest-framework-solution/tunr/urls.py)
+> [Solution](https://git.generalassemb.ly/seir-1130/tunr-1/blob/django-rest-framework-solution/tunr/urls.py)
 
 ## Testing! (10 min / 2:30)
 
@@ -490,10 +490,10 @@ allows us to customize our queries. For example maybe we want to limit the
 records and only show ones that are associated with the currently logged-in
 user.
 
-## Lab: [Django Book API](https://git.generalassemb.ly/sei-921/django-api-lab)
+## Lab: [Django Book API](https://git.generalassemb.ly/seir-1130/django-api-lab)
 
 Fork and clone the
-[Django Book API](https://git.generalassemb.ly/sei-921/django-api-lab)
+[Django Book API](https://git.generalassemb.ly/seir-1130/django-api-lab)
 lab. Spend the rest of class working on the lab.
 
 ## Additional Resources
