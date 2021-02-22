@@ -304,7 +304,7 @@ include all of the fields from the model in your API.
 > [serializer](http://www.django-rest-framework.org/api-guide/serializers) to
 > relate your models!
 
-> [Solution](https://git.generalassemb.ly/sei-921/tunr-1/blob/django-rest-framework-solution/tunr/serializers.py)
+> [Solution](https://git.generalassemb.ly/seir-1130/tunr-1/blob/django-rest-framework-solution/tunr/serializers.py)
 
 ## Break (10 min / 1:20)
 
