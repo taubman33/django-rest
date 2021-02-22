@@ -1,3 +1,5 @@
+## SEIR1130 February 22, 2021 
+
 [![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
 # Django REST Framework
@@ -74,10 +76,10 @@ fetch("/artists", {
   method: "POST",
   body: JSON.stringify({
     artist: {
-      name: "Limp Bizkit",
+      name: "Funkadelic",
       nationality: "USA",
       photo_url:
-        "http://nerdist.com/wp-content/uploads/2014/12/limp_bizkit-970x545.jpg"
+        "https://media1.fdncms.com/orlando/imager/u/original/10862750/screen_shot_2018-02-16_at_1.16.25_pm.png"
     }
   })
 })
@@ -106,8 +108,8 @@ from django.http import JsonResponse
 
 def artist_list(request):
     data = {
-        'name': 'Kanye',
-        'photo_url': 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Kanye_West_at_the_2009_Tribeca_Film_Festival.jpg/1920px-Kanye_West_at_the_2009_Tribeca_Film_Festival.jpg',
+        'name': 'Funkadelic',
+        'photo_url': 'https://media1.fdncms.com/orlando/imager/u/original/10862750/screen_shot_2018-02-16_at_1.16.25_pm.png',
         'nationality': 'USA'
     }
     return JsonResponse(data)
