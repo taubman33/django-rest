@@ -490,7 +490,7 @@ allows us to customize our queries. For example maybe we want to limit the
 records and only show ones that are associated with the currently logged-in
 user.
 
-## Lab: [Django Book API](https://git.generalassemb.ly/seir-1130/django-api-lab)
+## Lab: [Django Book API](https://git.generalassemb.ly/SEIR-32221/django-api-lab)
 
 Fork and clone the
 [Django Book API](https://git.generalassemb.ly/seir-1130/django-api-lab)
