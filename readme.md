@@ -267,9 +267,9 @@ class ArtistSerializer(serializers.HyperlinkedModelSerializer):
         many=True,
         read_only=True
     )
-+   class Meta:
-+       model = Artist
-+       fields = ('id', 'photo_url', 'nationality', 'name', 'songs',)
+    class Meta:
+       model = Artist 
+       fields = ('id', 'photo_url', 'nationality', 'name', 'songs',)
 ```
 
 Lets break down what's going on here.
@@ -301,7 +301,32 @@ include all of the fields from the model in your API.
 > [serializer](http://www.django-rest-framework.org/api-guide/serializers) to
 > relate your models!
 
-> [Solution](https://git.generalassemb.ly/seir-1130/tunr-1/blob/django-rest-framework-solution/tunr/serializers.py)
+> [Solution]
+> ```
+> from rest_framework import serializers
+
+from .models import Artist, Song
+
+class ArtistSerializer(serializers.HyperlinkedModelSerializer):
+    songs = serializers.HyperlinkedRelatedField(
+        view_name='song_detail',
+        many=True,
+        read_only=True
+    )
+
+    class Meta:
+        model = Artist
+        fields = ('id', 'photo_url', 'nationality', 'name', 'songs')
+
+
+class SongSerializer(serializers.HyperlinkedModelSerializer):
+    artist = serializers.HyperlinkedRelatedField(
+        view_name='artist_detail',
+        read_only=True
+    )
+    class Meta:
+        model = Song
+        fields = ('id', 'artist', 'title', 'album', 'preview_url',)       
 
 ## Break (10 min / 1:20)
 
