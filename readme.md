@@ -147,10 +147,10 @@ end!
 ## Installation and Configuration (15 min / 0:40)
 
 Change into your
-[`tunr`](https://github.com/ga-wdi-exercises/tunr_updated/tree/views-solution)
+  [`tunr`](https://github.com/ga-wdi-exercises/tunr_updated/tree/views-solution)
 project directory and make sure you have the latest code from the views and
-templates lesson. If not, checkout the solution branch from that lesson which is
-called `views-solution`. Make sure your virtual environment is activated, and
+templates lesson. If not, checkout the branch from that lesson which is
+called `views-`. Make sure your virtual environment is activated, and
 also make sure your database user permissions are set up properly.
 
 Before we get started, install the `djangorestframework` dependency.
@@ -302,7 +302,7 @@ include all of the fields from the model in your API.
 > relate your models!
 
 > [Solution]
-> ```
+> `
 > from rest_framework import serializers
 
 from .models import Artist, Song
@@ -327,7 +327,7 @@ class SongSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Song
         fields = ('id', 'artist', 'title', 'album', 'preview_url',)       
-
+`
 ## Break (10 min / 1:20)
 
 ## Views (20 min / 1:40)
@@ -376,7 +376,29 @@ class ArtistDetail(generics.RetrieveUpdateDestroyAPIView):
 
 Add in the views for the songs.
 
-> [Solution](https://git.generalassemb.ly/seir-1130/tunr-1/blob/django-rest-framework-solution/tunr/views.py)
+> [Solution]
+
+`
+from rest_framework import generics
+from .serializers import ArtistSerializer, SongSerializer
+from .models import Artist, Song
+
+class ArtistList(generics.ListCreateAPIView):
+    queryset = Artist.objects.all()
+    serializer_class = ArtistSerializer
+
+class ArtistDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Artist.objects.all()
+    serializer_class = ArtistSerializer
+
+class SongList(generics.ListCreateAPIView):
+    queryset = Song.objects.all()
+    serializer_class = SongSerializer
+
+class SongDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Song.objects.all()
+    serializer_class = SongSerializer
+    `
 
 ## URLs (20 min / 2:10)
 
@@ -403,7 +425,18 @@ urlpatterns = [
 
 Add in the urls for the song views.
 
-> [Solution](https://git.generalassemb.ly/seir-1130/tunr-1/blob/django-rest-framework-solution/tunr/urls.py)
+> [Solution]
+> `
+> from django.urls import path
+from . import views
+from rest_framework.routers import DefaultRouter
+
+urlpatterns = [
+    path('artists/', views.ArtistList.as_view(), name='artist_list'),
+    path('artists/<int:pk>', views.ArtistDetail.as_view(), name='artist_detail'),
+    path('songs/', views.SongList.as_view(), name="song_list"),
+    path('songs/<int:pk>', views.SongDetail.as_view(), name="song_detail")
+]`
 
 ## Testing! (10 min / 2:30)
 
