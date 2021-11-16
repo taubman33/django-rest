@@ -1,3 +1,4 @@
+## Django Lessons 4 of 5
 
 # Django REST Framework
 
@@ -22,7 +23,7 @@ By the end of this, developers should be able to:
 
 ## Introduction
 
-So far, we have written full-stack Django applications that use Django's builtin
+So far, we have written full-stack Django applications that use Django's built in
 templating language to write our applications. When we are building applications
 in Django that use front end frameworks or have live updating data, we have to
 use an API for our back end applications. Today, we are going to learn how to
@@ -37,30 +38,8 @@ We'll see that the Django REST framework has some powerful tools and conventions
 for controlling how we get and send JSON data. With the MERN stack, we had to do
 all that manually!
 
-## Review: APIs (5 min / 0:10)
 
-<details>
-  <summary><strong>What is an API?</strong></summary>
 
-> API stands for "Application Programming Interface." While it technically
-> applies to all of software design, the term has come to refer to web
-> applications that respond with JSON, XML, or some other raw data format
-
-</details>
-
-<details>
-
-<summary><strong>What tools and libraries do we use to access other
-APIs from within our programs?</strong></summary>
-
-> [JavaScript's fetch method](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch),
-> [Axios](https://github.com/axios/axios), or any other means of doing HTTP
-> requests, like [Postman](https://www.getpostman.com/)
-
-</details>
-
-<details>
-  <summary><strong>What information do we need to provide in order to be able to retrieve information from an API? What about for modifying data in an API?</strong></summary>
 
 > In order to "GET" or "DELETE" information, we need to provide a `url`, `type`,
 > (HTTP method) and `dataType` (API data format). In order to "POST" or "PUT",
@@ -93,28 +72,6 @@ fetch("/artists", {
 Using Django's built-in `JsonResponse`, we can send dictionaries or lists as
 JSON objects in Django without installing any libraries.
 
-Let's open
-[`tunr`](https://git.generalassemb.ly/SEIR-1130/tunr-1)
-and checkout a new branch to test it out!
-
-Here is what that looks like:
-
-```py
-# views.py
-from django.http import JsonResponse
-
-def artist_list(request):
-    data = {
-        'name': 'Funkadelic',
-        'photo_url': 'https://media1.fdncms.com/orlando/imager/u/original/10862750/screen_shot_2018-02-16_at_1.16.25_pm.png',
-        'nationality': 'USA'
-    }
-    return JsonResponse(data)
-```
-
-We could also convert our QuerySet of data from our database to a list and then
-send that as a JsonResponse. Note: you could also use a serializer to convert it
-to a dictionary and send the data that way.
 
 ```py
 # views.py
@@ -372,7 +329,7 @@ class ArtistDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ArtistSerializer
 ```
 
-### You Do: Add Views for the Songs (10 min / 1:50)
+
 
 Add in the views for the songs.
 
@@ -544,12 +501,6 @@ records.
 allows us to customize our queries. For example maybe we want to limit the
 records and only show ones that are associated with the currently logged-in
 user.
-
-## Lab: [Django Book API](https://git.generalassemb.ly/SEI-712/django-api-lab)
-
-Fork and clone the
-[Django Book API](https://git.generalassemb.ly/sei-712/django-api-lab)
-lab. Spend the rest of class working on the lab.
 
 ## Additional Resources
 
