@@ -259,7 +259,7 @@ include all of the fields from the model in your API.
 > relate your models!
 
 > [Solution]
-> `
+> `py
 > from rest_framework import serializers
 
 from .models import Artist, Song
@@ -275,7 +275,9 @@ class ArtistSerializer(serializers.HyperlinkedModelSerializer):
         model = Artist
         fields = ('id', 'photo_url', 'nationality', 'name', 'songs')
 
+`
 
+`
 class SongSerializer(serializers.HyperlinkedModelSerializer):
     artist = serializers.HyperlinkedRelatedField(
         view_name='artist_detail',
